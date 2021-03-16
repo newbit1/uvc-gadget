@@ -1,0 +1,24 @@
+#!/bin/bash
+VER=r17c
+DLF=android-ndk-$VER-linux-x86_64.zip
+cleanup() {
+	for i in "$@"; do
+		echo "cleaning up $i"
+		rm -f -R "$i" &
+		pids=" $!"
+		wait $pids || { echo "there were errors" >&2; exit 1; }
+	done
+}
+cd ..
+cleanup $DLF.*
+wait
+cleanup android-ndk
+wait
+wget https://dl.google.com/android/repository/$DLF -O $DLF
+unzip android-ndk-$VER-linux-x86_64.zip >/dev/null
+mv android-ndk-$VER android-ndk >/dev/null
+cleanup $DLF
+wait
+cd - 2&>/dev/null
+
+
