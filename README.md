@@ -2,50 +2,57 @@
 
 uvcgadget is a pure C library that implements handling of UVC gadget functions.
 
+
 ## Utilities
 
 - uvc-gadget - Sample test application
 
+## Build Environment
+Linux Mint 19 Tara
+Cmake version 3.10.2
+gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+GNU Make 4.1
+
+## Upgrade to Cmake Version 3.19.5
+```
+sudo apt purge --auto-remove cmake
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+sudo apt update && sudo apt install cmake
+```
+
+## Supported NDKs
+- 17c,18b,19c,20b,r21e,r22,r23-beta1
+
+for NDK Version=17c set export ANDROID_TOOLCHAIN_NAME=aarch64-linux-android-4.9
+for NDK Verions>17c set export ANDROID_TOOLCHAIN_NAME=aarch64-linux-android-clang3.5
+```
+sudo apt install cmake
+```
+
 ## Build instructions:
 
-To compile:
-
+Get the NDK:
 ```
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make -j4
+./configure_gcc_toolchain
 ```
 
-## Cross compiling instructions:
-
-Directions for cross compiling depend on the build environment.
-
-For buildroot-based builds, cmake can be pointed to the toolchain file provided
-by buildroot:
-
+Cross compile:
 ```
-$ mkdir build
-$ cd build
-$ cmake -DCMAKE_TOOLCHAIN_FILE=<buildrootpath>/output/host/usr/share/buildroot/toolchainfile.cmake ..
-$ make -j4
+source .exports
 ```
 
-If your build environment doesn't provide a CMake toolchain file, the following
-template can be used as a starting point.
+## Target
 
-```
-set(CMAKE_SYSTEM_NAME Linux)
+ANDROID_ABI=arm64-v8a
+ANDROID_PLATFORM=android-27
 
-set(BUILD_ENV_ROOT "/path/to/your/build/enviroment/root/")
+### Change Logs
+#### [Mar. 2021]
 
-# Specify the cross compiler
-set(CMAKE_C_COMPILER   ${BUILD_ENV_ROOT}/host/usr/bin/arm-buildroot-linux-gnueabihf-gcc)
+* [glob.c] - Fixed some minor Issues for compilation
 
-# Where is the target environment
-set(CMAKE_FIND_ROOT_PATH ${BUILD_ENV_ROOT}/target ${BUILD_ENV_ROOT}/host)
-
-set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ONLY)
-set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
-set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
-```
+### Credits
+* [Laurent Pinchart UVC gadget](https://git.ideasonboard.org/uvc-gadget.git)
+* [taka-no-me android-cmake](https://github.com/taka-no-me/android-cmake)
+* [Kitware APT Repository CMake](https://apt.kitware.com)
