@@ -212,7 +212,7 @@ convert_dirent (const struct dirent *source)
 {
   if (source == NULL)
     {
-      struct readdir_result result = { NULL, };
+      struct readdir_result result = {0};
       return result;
     }
   struct readdir_result result = READDIR_RESULT_INITIALIZER (source);
@@ -227,7 +227,7 @@ convert_dirent64 (const struct dirent64 *source)
 {
   if (source == NULL)
     {
-      struct readdir_result result = { NULL, };
+      struct readdir_result result = {0};
       return result;
     }
   struct readdir_result result = READDIR_RESULT_INITIALIZER (source);
@@ -1508,6 +1508,7 @@ glob_in_dir (const char *pattern, const char *directory, int flags,
   struct globnames *names_alloca = &init_names;
   size_t nfound = 0;
   size_t cur = 0;
+  size_t i = 0;
   int meta;
   int save;
 
@@ -1677,10 +1678,11 @@ glob_in_dir (const char *pattern, const char *directory, int flags,
       if (new_gl_pathv == NULL)
 	{
 	memory_error:
+	 
 	  while (1)
 	    {
 	      struct globnames *old = names;
-	      for (size_t i = 0; i < cur; ++i)
+	      for (i = 0; i < cur; ++i)
 		free (names->name[i]);
 	      names = names->next;
 	      /* NB: we will not leak memory here if we exit without
@@ -1705,7 +1707,7 @@ glob_in_dir (const char *pattern, const char *directory, int flags,
 	  while (1)
 	    {
 	      struct globnames *old = names;
-	      for (size_t i = 0; i < cur; ++i)
+	      for (i = 0; i < cur; ++i)
 		new_gl_pathv[pglob->gl_offs + pglob->gl_pathc++]
 		  = names->name[i];
 	      names = names->next;
