@@ -1,5 +1,5 @@
 #!/bin/bash
-VER=r17c
+VER=r22
 DLF=android-ndk-$VER-linux-x86_64.zip
 cleanup() {
 	for i in "$@"; do
@@ -10,7 +10,7 @@ cleanup() {
 	done
 }
 cd ..
-cleanup $DLF.*
+cleanup android-ndk-*.zip.*
 wait
 cleanup android-ndk
 wait
@@ -20,5 +20,3 @@ mv android-ndk-$VER android-ndk >/dev/null
 cleanup $DLF
 wait
 cd - 2&>/dev/null
-
-
