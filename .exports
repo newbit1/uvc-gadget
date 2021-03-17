@@ -1,0 +1,22 @@
+export CMAKE_TOOLCHAIN_FILE=$(pwd)/../android-ndk/build/cmake/android.toolchain.cmake
+export ANDROID_TOOLCHAIN_NAME=aarch64-linux-android-4.9
+export ANDROID_TOOLCHAIN_NAME=aarch64-linux-android-clang3.5
+export ANDROID_NDK=$(pwd)/../android-ndk
+export ANDROID_ABI=arm64-v8a
+export ANDROID_PLATFORM=android-27
+export ANDROID_STL=c++_static
+export SOURCE=$(pwd)
+export BUILD=$(pwd)/build
+
+rm -rf $BUILD && mkdir $BUILD
+
+cmake \
+	-B$BUILD \
+	-H$SOURCE \
+	-DCMAKE_TOOLCHAIN_FILE=$CMAKE_TOOLCHAIN_FILE \
+	-DANDROID_ABI=$ANDROID_ABI \
+	-DANDROID_NDK=$ANDROID_NDK \
+	-DANDROID_STL=$ANDROID_STL \
+	-DANDROID_PLATFORM=$ANDROID_PLATFORM
+
+cmake --build $BUILD/.
