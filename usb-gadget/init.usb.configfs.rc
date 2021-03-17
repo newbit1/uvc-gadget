@@ -60,6 +60,7 @@ on post-fs-data && property:sys.usb.configfs=1
 on charger-config-usb_gadget && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/strings/0x409/manufacturer ${ro.product.manufacturer}
     write /config/usb_gadget/g1/strings/0x409/product ${ro.product.model}
+    write /config/usb_gadget/g1/functions/mass_storage.gs6/lun.0/cdrom 1
 
 on property:sys.usb.config=none && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/strings/0x409/manufacturer ${ro.product.manufacturer}
@@ -415,9 +416,10 @@ on property:sys.usb.config=mass_storage && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/UDC "none"
     stop adbd
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "mass_storage"
-    write /config/usb_gadget/g1/idVendor 0x12d1
-    write /config/usb_gadget/g1/idProduct 0x107e
-    write /config/usb_gadget/g1/functions/mass_storage.gs6/lun.0/file none
+    write /config/usb_gadget/g1/idVendor 0x8564
+    write /config/usb_gadget/g1/idProduct 0x1000
+    write /config/usb_gadget/g1/functions/mass_storage.gs6/lun.0/file ${rw.cust.mass_storage}
+    write /config/usb_gadget/g1/functions/mass_storage.gs6/lun.0/cdrom 0
     symlink /config/usb_gadget/g1/functions/mass_storage.gs6 /config/usb_gadget/g1/configs/b.1/f1
     write /sys/devices/virtual/android_usb/android0/port_mode 7
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
