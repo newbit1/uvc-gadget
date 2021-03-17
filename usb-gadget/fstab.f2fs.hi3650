@@ -22,3 +22,4 @@
 /dev/block/bootdevice/by-name/3rdmodemnvmbkp         /3rdmodemnvmbkp                ext4      rw,nosuid,nodev,noatime,data=ordered,context=u:object_r:radio_data_file:s0 wait,check
 /dev/block/bootdevice/by-name/misc       /misc       emmc      defaults        defaults
 /dev/block/zram0             none         swap    defaults     zramsize=536870912
+/devices/virtual/block/loop7 auto auto defaults voldmanaged=sdcard:auto
