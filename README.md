@@ -23,7 +23,7 @@ sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 sudo apt update && sudo apt install cmake
 ```
 
-## Supported NDKs 17c,18b,19c,20b,r21e,r22,r23-beta1
+## Supported NDKs r17c,r18b,r19c,r20b,r21e,r22,r23-beta1
 ```
 for NDK Version=17c set export ANDROID_TOOLCHAIN_NAME=aarch64-linux-android-4.9
 for NDK Verions>17c set export ANDROID_TOOLCHAIN_NAME=aarch64-linux-android-clang3.5

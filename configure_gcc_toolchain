@@ -1,5 +1,5 @@
 #!/bin/bash
-VER=r22
+VER=r18b
 DLF=android-ndk-$VER-linux-x86_64.zip
 cleanup() {
 	for i in "$@"; do
