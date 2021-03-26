@@ -57,5 +57,9 @@ ANDROID_PLATFORM=android-27
 
 ### Credits
 * [Laurent Pinchart UVC gadget](https://git.ideasonboard.org/uvc-gadget.git)
+* [wlhe UVC gadget](https://github.com/wlhe/uvc-gadget)
+* [Laurent Pinchart Yet Another V4L2 Test Application](https://git.ideasonboard.org/yavta.git)
 * [taka-no-me android-cmake](https://github.com/taka-no-me/android-cmake)
 * [Kitware APT Repository CMake](https://apt.kitware.com)
+
+
